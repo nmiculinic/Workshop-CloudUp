@@ -1,0 +1,38 @@
+{
+  "name": "typescript-react",
+  "version": "1.0.0",
+  "description": "A simple app to demonstrate TypeScript and React",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack-dev-server -d --inline --progress",
+    "build": "cross-env NODE_ENV=production webpack"
+  },
+  "keywords": [
+    "TypeScript",
+    "React"
+  ],
+  "author": "Hrvoje Bagaric",
+  "license": "MIT",
+  "dependencies": {
+    "@types/prop-types": "15.5.3",
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "react-dom": "16.4.0"
+  },
+  "devDependencies": {
+    "@types/react": "16.3.16",
+    "@types/react-dom": "16.0.5",
+    "awesome-typescript-loader": "5.0.0",
+    "babel-core": "6.26.3",
+    "cross-env": "5.1.6",
+    "html-webpack-plugin": "3.2.0",
+    "raw-loader": "0.5.1",
+    "tslint": "5.10.0",
+    "tslint-loader": "3.6.0",
+    "tslint-react": "3.6.0",
+    "typescript": "2.9.1",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.1",
+    "webpack-dev-server": "3.1.4"
+  }
+}
