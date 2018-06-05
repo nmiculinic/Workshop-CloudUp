@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { GiphyViewer } from './component';
-import { StudentProps } from '../demo/student';
-import { Lecture } from '../demo/lecture';
+import { getRandomGiphy } from './util/giphy.service';
 
 export interface AppState {
     gifSource: string;
@@ -23,25 +22,12 @@ class Index extends React.Component<{}, AppState> {
         this.searchGiphy();
     }
 
-    private sanitizeInput(query: string): string {
-        return encodeURIComponent(query);
-    }
-
     private searchGiphy(query?: string) {
-        let httpQuery = 'api_key=dc6zaTOxFJmzC';
-        if (query) {
-            httpQuery += '&tag=' + "cat";
-        }
-
-        fetch(`http://api.giphy.com/v1/gifs/random?${httpQuery}`)
-            .then(response => {
-                return response.json();
-            })
-            .then(giphy => {
-                this.setState({
-                    gifSource: giphy.data.images.original.url
-                });
+        getRandomGiphy(query).then(gifSource => {
+            this.setState({
+                gifSource: gifSource
             });
+        });
     }
 
     private onSubmit = (e: any) => {
