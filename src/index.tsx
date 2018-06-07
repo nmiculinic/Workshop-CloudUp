@@ -4,11 +4,41 @@ import { getRandomGiphy } from './util/giphy.service';
 import Lecture from './demo/lecture';
 import { SearchComponent } from './components/search';
 
-class Index extends React.Component<{}, {}> {
+interface MainState {
+    image?: string;
+}
+
+class Index extends React.Component<{}, MainState> {
+    /**
+     *
+     */
+    constructor(props: any) {
+        super(props);
+        this.state = {};
+    }
     private searchGiphy(query?: string) {
         getRandomGiphy(query).then(gifSource => {
             // nesto uraditi sa gif source. primjer prikaza: <img src={gifSource} />
         });
+    }
+    private _SearchButtonClicked = (query: string) => {
+        getRandomGiphy(query).then(
+            x => {
+                this.setState({
+                    image: x
+                });
+        }).catch((e) => {
+            console.log(JSON.stringify(e));
+        });
+    }
+
+    private _renderImage(): JSX.Element {
+        if (!this.state.image) {
+            return <p>No image</p>;
+        }
+        return (
+            <img src={this.state.image}/>
+            );
     }
 
     public render(): JSX.Element {
@@ -20,8 +50,9 @@ class Index extends React.Component<{}, {}> {
                     alignItems: 'center'
                 }}
             >
+                {this._renderImage()}
                 <SearchComponent
-                    onSearchCallback={() => {alert('sss'); }}
+                    onSearchCallback={this._SearchButtonClicked}
                 />
             </div>
         );

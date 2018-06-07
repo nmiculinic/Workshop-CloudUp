@@ -9,6 +9,9 @@ export function getRandomGiphy(query?: string) {
             return response.json();
         })
         .then(giphy => {
+            if (giphy.data.length === 0) {
+                throw new DOMException('No image found');
+            }
             return Promise.resolve(giphy.data.images.original.url);
         });
 }
