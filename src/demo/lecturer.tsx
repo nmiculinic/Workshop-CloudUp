@@ -7,9 +7,11 @@ export interface ILecturerProps {
 
 export default class Lecturer extends React.Component<ILecturerProps, {}> {
     public render() {
-        return <div>
-            Lecturer:{this.props.name}
-            <button onClick={this.props.onExamStart()}> Start Exam </button>
-        </div>;
+        return (
+            <div>
+                Lecturer:{this.props.name}
+                <button onClick={this.props.onExamStart}> Start Exam </button>
+            </div>
+        );
     }
 }

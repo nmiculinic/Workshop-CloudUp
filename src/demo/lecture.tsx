@@ -29,30 +29,13 @@ export default class Lecture extends React.Component<ILectureProps, ILectureStat
         }
     }
 
-    public render() {
-        return <div>
-            <Lecturer name={this.props.lecturerName} onExamStart={this._onStartExam} />
-            <div>
-                {
-                    this.state.students.map((student, i) =>
-                        <Student key={i} {...student} />
-                    )
-                }
-            </div>
-            <div>
-                <input value={this.state.newStudentName} onChange={this._onInputChange} />
-                <button onClick={this._addStudent}> Add Student </button>
-            </div>
-        </div>;
-    }
-
     private _addStudent = () => {
         if (!this.state.newStudentName) {
             return;
         }
 
         const newStudentList = this.state.students.slice();
-        newStudentList.push({name: this.state.newStudentName});
+        newStudentList.push({ name: this.state.newStudentName });
         this.setState({
             students: newStudentList,
             newStudentName: ''
@@ -67,5 +50,24 @@ export default class Lecture extends React.Component<ILectureProps, ILectureStat
 
     private _onStartExam = () => {
         this.props.onExamStarted(this.state.students);
+    }
+
+    public render() {
+        return (
+            <div>
+                <Lecturer name={this.props.lecturerName} onExamStart={this._onStartExam} />
+                <div>
+                    {
+                        this.state.students.map((student, i) =>
+                            <Student key={i} {...student} />
+                        )
+                    }
+                </div>
+                <div>
+                    <input value={this.state.newStudentName} onChange={this._onInputChange} />
+                    <button onClick={this._addStudent}> Add Student </button>
+                </div>
+            </div>
+        );
     }
 }
