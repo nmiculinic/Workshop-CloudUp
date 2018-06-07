@@ -1,7 +1,33 @@
 import * as React from 'react';
 
-export class SearchComponent extends React.Component<{}, {}> {
+interface ISearchProps {
+    onSearchCallback?();
+}
+
+interface ISearchState {
+    query: string;
+}
+
+export class SearchComponent extends React.Component<ISearchProps, ISearchState> {
+    constructor(props: ISearchProps) {
+        super(props);
+        this.state  = {
+            query: '112122'
+        };
+    }
+
+    private _onChange = (args: React.FormEvent<any>) => {
+        this.setState({
+            query: args.currentTarget.value
+        });
+    }
+
     public render() {
-        return  <div>Hello world </div>;
+    return (
+        <div>
+            <input value={this.state.query} onChange={this._onChange}/>;
+                <button onClick={() => alert('Yeeey')}> Add Student </button>
+        </div>
+    );
     }
 }
