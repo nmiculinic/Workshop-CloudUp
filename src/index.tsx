@@ -1,29 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { getRandomGiphy } from './util/giphy.service';
-import { GiphyViewer } from './components/giphyViewer';
 
-export interface AppState {
-    gifSource: any;
-}
-
-class Index extends React.Component<{}, AppState> {
-    constructor(props: {}) {
-        super(props);
-        this.state = {
-            gifSource: ''
-        };
-    }
-
-    public componentDidMount() {
-        this.searchGiphy('hackerman');
-    }
-
+class Index extends React.Component<{}, {}> {
     private searchGiphy(query?: string) {
         getRandomGiphy(query).then(gifSource => {
-            this.setState({
-                gifSource: gifSource
-            });
+            // nesto uraditi sa gif source. primjer prikaza: <img src={gifSource} />
         });
     }
 
@@ -36,9 +18,7 @@ class Index extends React.Component<{}, AppState> {
                     alignItems: 'center'
                 }}
             >
-                <GiphyViewer
-                    source={this.state.gifSource}
-                />
+                Hello World!
             </div>
         );
     }
