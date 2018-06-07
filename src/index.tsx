@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { getRandomGiphy } from './util/giphy.service';
 import Lecture from './demo/lecture';
+import { SearchComponent } from './components/search';
 
 class Index extends React.Component<{}, {}> {
     private searchGiphy(query?: string) {
@@ -19,9 +20,7 @@ class Index extends React.Component<{}, {}> {
                     alignItems: 'center'
                 }}
             >
-                <Lecture
-                    lecturerName="dino"
-                    onExamStarted={(students) => console.log('start')}
+                <SearchComponent
                 />
             </div>
         );
