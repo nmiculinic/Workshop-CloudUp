@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface ISearchProps {
-    onSearchCallback?();
+    onSearchCallback();
 }
 
 interface ISearchState {
@@ -26,7 +26,7 @@ export class SearchComponent extends React.Component<ISearchProps, ISearchState>
     return (
         <div>
             <input value={this.state.query} onChange={this._onChange}/>;
-                <button onClick={() => alert('Yeeey')}> Add Student </button>
+                <button onClick={this.props.onSearchCallback}> Add Student </button>
         </div>
     );
     }

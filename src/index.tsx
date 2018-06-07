@@ -21,6 +21,7 @@ class Index extends React.Component<{}, {}> {
                 }}
             >
                 <SearchComponent
+                    onSearchCallback={() => {alert('sss'); }}
                 />
             </div>
         );
