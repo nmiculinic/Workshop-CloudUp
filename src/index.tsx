@@ -1,59 +1,50 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { getRandomGiphy } from './util/giphy.service';
-import Lecture from './demo/lecture';
-import { SearchComponent } from './components/search';
+import Pex from './components/ex_plotly';
+import { Dropdown, DropdownProps } from 'semantic-ui-react';
+
+const friendOptions = [
+    {
+        text: 'Jenny Hess',
+        value: 'Jenny Hess',
+        // image: { avatar: true, src: '/assets/images/avatar/small/jenny.jpg' },
+    },
+    {
+        text: 'lala',
+        value: 'lala',
+        // image: { avatar: true, src: '/assets/images/avatar/small/jenny.jpg' },
+    },
+];
 
 interface MainState {
-    image?: string;
+    plot?: string;
 }
 
 class Index extends React.Component<{}, MainState> {
-    /**
-     *
-     */
     constructor(props: any) {
         super(props);
         this.state = {};
     }
-    private searchGiphy(query?: string) {
-        getRandomGiphy(query).then(gifSource => {
-            // nesto uraditi sa gif source. primjer prikaza: <img src={gifSource} />
-        });
-    }
-    private _SearchButtonClicked = (query: string) => {
-        getRandomGiphy(query).then(
-            x => {
-                this.setState({
-                    image: x
-                });
-        }).catch((e) => {
-            console.log(JSON.stringify(e));
+
+    private _onChange = (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+        this.setState({
+            plot: data.value as string,
         });
     }
 
-    private _renderImage(): JSX.Element {
-        if (!this.state.image) {
-            return <p>No image</p>;
-        }
-        return (
-            <img src={this.state.image}/>
+    public render() {
+        if (!this.state.plot) {
+            return (
+                <div>
+                    <Dropdown placeholder="Select friend" fluid={true} selection={true} options={friendOptions} onChange={this._onChange} />
+                </div>
             );
-    }
+        }
 
-    public render(): JSX.Element {
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}
-            >
-                {this._renderImage()}
-                <SearchComponent
-                    onSearchCallback={this._SearchButtonClicked}
-                />
+            <div>
+                <Dropdown placeholder="Select friend" fluid={true} selection={true} options={friendOptions} onChange={this._onChange} />
+                <Pex url={`http://localhost:8000?plot=${this.state.plot}`} />
             </div>
         );
     }

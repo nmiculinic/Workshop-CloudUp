@@ -14,12 +14,14 @@
   "author": "Hrvoje Bagaric",
   "license": "MIT",
   "dependencies": {
+    "@types/plotly.js": "^1.38.1",
     "@types/prop-types": "15.5.3",
     "plotly.js": "^1.38.2",
     "prop-types": "15.6.1",
     "react": "16.4.0",
     "react-dom": "16.4.0",
-    "react-plotly.js": "^2.2.0"
+    "react-plotly.js": "^2.2.0",
+    "semantic-ui-react": "^0.81.1"
   },
   "devDependencies": {
     "@types/react": "16.3.16",
